@@ -1,16 +1,79 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-          {% block stylesheets %}
-        {% endblock %}
+{% extends 'base.html.twig' %}
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+{% block title %}Préparation de repas - Accueil{% endblock %}
+
+{% block body %}
+    <!-- Lien vers Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+
+    <!-- Section Héro -->
+    <section class="hero-section text-white text-center">
+        <div class="container py-5">
+            <h1 class="display-3">Préparez vos repas de la semaine</h1>
+            <p class="lead">Organisez vos repas avec facilité. Planifiez votre semaine et découvrez de nouvelles recettes !</p>
+            <a href="#features" class="btn btn-lg btn-primary">Explorez les recettes</a>
+        </div>
+    </section>
+
+    <!-- Section Fonctionnalités -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Nos fonctionnalités</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Recettes variées">
+                        <div class="card-body">
+                            <h5 class="card-title">Recettes variées</h5>
+                            <p class="card-text">Explorez une large sélection de recettes pour tous les goûts et préférences alimentaires.</p>
+                            <a href="#" class="btn btn-primary">Voir les recettes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Planification facile">
+                        <div class="card-body">
+                            <h5 class="card-title">Planification facile</h5>
+                            <p class="card-text">Planifiez vos repas de la semaine rapidement et facilement, en quelques clics.</p>
+                            <a href="#" class="btn btn-primary">Planifiez maintenant</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Liste de courses">
+                        <div class="card-body">
+                            <h5 class="card-title">Liste de courses</h5>
+                            <p class="card-text">Générez automatiquement votre liste de courses pour les recettes que vous avez choisies.</p>
+                            <a href="#" class="btn btn-primary">Générer la liste</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Ce que disent nos utilisateurs</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="blockquote-wrapper">
+                        <blockquote class="blockquote">
+                            <p>"Grâce à ce site, j'ai pu planifier mes repas et gagner du temps chaque semaine. Une vraie révolution dans ma cuisine !" - Marie</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="blockquote-wrapper">
+                        <blockquote class="blockquote">
+                            <p>"Les recettes sont simples à suivre et adaptées à toute la famille. Une expérience agréable et pratique !" - Paul</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

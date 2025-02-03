@@ -1,0 +1,47 @@
+/* Section Héro */
+.hero-section {
+    background-color: #007bff;
+    color: white;
+    padding: 80px 0;
+    border-radius: 10px;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+}
+
+.hero-section p {
+    font-size: 1.5rem;
+}
+
+.custom-btn {
+    background-color: #28a745;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-btn:hover {
+    background-color: #218838;
+}
+
+/* Section Fonctionnalités */
+.card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+/* Section Contact */
+form .form-group {
+    margin-bottom: 1.5rem;
+}
