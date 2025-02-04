@@ -4,27 +4,29 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', columns: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 35)]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 35)]
+    #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $test = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $test1 = null;
+    #[ORM\Column(type: 'json')]
+    private array $roles = [];
 
     public function getId(): ?int
     {
@@ -39,7 +41,6 @@ class User
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -51,31 +52,30 @@ class User
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
-    public function getTest(): ?string
+    public function getRoles(): array
     {
-        return $this->test;
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER'; // Ajout du rôle utilisateur par défaut
+        return array_unique($roles);
     }
 
-    public function setTest(string $test): static
+    public function setRoles(array $roles): static
     {
-        $this->test = $test;
-
+        $this->roles = $roles;
         return $this;
     }
 
-    public function getTest1(): ?string
+    public function getUserIdentifier(): string
     {
-        return $this->test1;
+        return $this->email;
     }
 
-    public function setTest1(string $test1): static
+    public function eraseCredentials(): void
     {
-        $this->test1 = $test1;
-
-        return $this;
+        // On pourrait vider ici des champs sensibles (ex: plainPassword)
     }
 }
+
