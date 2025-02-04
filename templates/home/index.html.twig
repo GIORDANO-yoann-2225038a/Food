@@ -3,16 +3,25 @@
 {% block title %}Welcome!{% endblock %}
 
 {% block body %}
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl text-center">
-            <h1 class="text-2xl font-bold text-gray-800">Hello, HomeController!</h1>
-            <p class="mt-4 text-gray-600">
-                This friendly message is coming from:
-            </p>
-            <ul class="mt-4 text-gray-500 text-sm">
-                <li>Your controller: <code class="bg-gray-200 px-2 py-1 rounded">src/Controller/HomeController.php</code></li>
-                <li>Your template: <code class="bg-gray-200 px-2 py-1 rounded">templates/home/index.html.twig</code></li>
-            </ul>
+    <div class="relative min-h-screen bg-gray-100">
+        <!-- Bouton de déconnexion (protection CSRF activée) -->
+        <form action="{{ path('app_logout') }}" method="post" style="position: absolute; top: 10px; right: 10px;">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+            <button type="submit">Déconnexion</button>
+        </form>
+
+
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl text-center">
+                <h1 class="text-2xl font-bold text-gray-800">Hello, HomeController!</h1>
+                <p class="mt-4 text-gray-600">
+                    This friendly message is coming from:
+                </p>
+                <ul class="mt-4 text-gray-500 text-sm">
+                    <li>Your controller: <code class="bg-gray-200 px-2 py-1 rounded">src/Controller/HomeController.php</code></li>
+                    <li>Your template: <code class="bg-gray-200 px-2 py-1 rounded">templates/home/index.html.twig</code></li>
+                </ul>
+            </div>
         </div>
     </div>
 {% endblock %}
