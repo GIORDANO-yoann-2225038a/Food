@@ -15,7 +15,7 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     function index(): Response
     {
-        return $this->render('user/index.html.twig', [
+        return $this->render('home/index.html.twig', [
             'message' => 'User successfully created!'
         ]);
     }

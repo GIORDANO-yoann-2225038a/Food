@@ -1,20 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Welcome!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/yg190/Documents/iut aix/Food_Symfony/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/Users/yg190/Documents/iut aix/Food_Symfony/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl text-center">
+            <h1 class="text-2xl font-bold text-gray-800">Hello, HomeController!</h1>
+            <p class="mt-4 text-gray-600">
+                This friendly message is coming from:
+            </p>
+            <ul class="mt-4 text-gray-500 text-sm">
+                <li>Your controller: <code class="bg-gray-200 px-2 py-1 rounded">src/Controller/HomeController.php</code></li>
+                <li>Your template: <code class="bg-gray-200 px-2 py-1 rounded">templates/home/index.html.twig</code></li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}
