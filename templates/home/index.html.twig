@@ -1,3 +1,4 @@
+{% extends 'base.html.twig' %}
 {% block title %}Notre Restaurant{% endblock %}
 
 {% block body %}
@@ -5,14 +6,14 @@
     <!-- Header -->
     <header class="bg-white shadow-md">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-gray-800">🍽️ Le Gourmet</h1>
+            <h1 class="text-3xl font-bold text-gray-800">Food</h1>
             <nav>
                 <ul class="flex space-x-6">
                     <li><a href="#" class="text-gray-700 hover:text-gray-900">Accueil</a></li>
                     <li><a href="#" class="text-gray-700 hover:text-gray-900">Menu</a></li>
                     <li><a href="#" class="text-gray-700 hover:text-gray-900">Réservations</a></li>
                     <!-- Bouton de déconnexion (protection CSRF activée) -->
-                    <form action="{{ path('app_logout') }}" method="post" style="position: absolute; top: 10px; right: 10px;">
+                    <form action="{{ path('app_logout') }}" method="post" class="text-gray-700 hover:text-gray-900">
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
                         <button type="submit">Déconnexion</button>
                     </form>
