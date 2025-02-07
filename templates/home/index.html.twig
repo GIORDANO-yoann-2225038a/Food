@@ -1,27 +1,72 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Welcome!{% endblock %}
+{% block title %}Notre Restaurant{% endblock %}
 
 {% block body %}
-    <div class="relative min-h-screen bg-gray-100">
-        <!-- Bouton de déconnexion (protection CSRF activée) -->
-        <form action="{{ path('app_logout') }}" method="post" style="position: absolute; top: 10px; right: 10px;">
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
-            <button type="submit">Déconnexion</button>
-        </form>
-
-
-        <div class="flex items-center justify-center min-h-screen">
-            <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl text-center">
-                <h1 class="text-2xl font-bold text-gray-800">Hello, HomeController!</h1>
-                <p class="mt-4 text-gray-600">
-                    This friendly message is coming from:
-                </p>
-                <ul class="mt-4 text-gray-500 text-sm">
-                    <li>Your controller: <code class="bg-gray-200 px-2 py-1 rounded">src/Controller/HomeController.php</code></li>
-                    <li>Your template: <code class="bg-gray-200 px-2 py-1 rounded">templates/home/index.html.twig</code></li>
+<div class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-gray-800">🍽️ Le Gourmet</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="text-gray-700 hover:text-gray-900">Accueil</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-gray-900">Menu</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-gray-900">Réservations</a></li>
+                    <!-- Bouton de déconnexion (protection CSRF activée) -->
+                    <form action="{{ path('app_logout') }}" method="post" style="position: absolute; top: 10px; right: 10px;">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+                        <button type="submit">Déconnexion</button>
+                    </form>
                 </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-cover bg-center h-96" style="background-image: url('{{ asset('images/restaurant.jpg') }}');">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <h2 class="text-white text-5xl font-bold">Découvrez une expérience culinaire unique</h2>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="container mx-auto px-6 py-12">
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Notre Menu</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <img src="{{ asset('images/plat1.jpg') }}" alt="Plat 1" class="w-full h-48 object-cover rounded">
+                <h3 class="text-xl font-semibold mt-4">Filet de saumon grillé</h3>
+                <p class="text-gray-600">Accompagné de légumes frais.</p>
+                <span class="block mt-2 text-gray-900 font-bold">15€</span>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <img src="{{ asset('images/plat2.jpg') }}" alt="Plat 2" class="w-full h-48 object-cover rounded">
+                <h3 class="text-xl font-semibold mt-4">Bœuf bourguignon</h3>
+                <p class="text-gray-600">Recette traditionnelle française.</p>
+                <span class="block mt-2 text-gray-900 font-bold">18€</span>
+            </div>
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <img src="{{ asset('images/plat3.jpg') }}" alt="Plat 3" class="w-full h-48 object-cover rounded">
+                <h3 class="text-xl font-semibold mt-4">Tarte aux fraises</h3>
+                <p class="text-gray-600">Un dessert frais et léger.</p>
+                <span class="block mt-2 text-gray-900 font-bold">7€</span>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Réservation -->
+    <section class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold">Réservez votre table dès maintenant</h2>
+            <p class="mt-4 text-lg">Appelez-nous au <strong>+33 1 23 45 67 89</strong> ou réservez en ligne.</p>
+            <a href="#" class="mt-6 inline-block bg-yellow-500 text-gray-900 font-semibold py-3 px-6 rounded-lg hover:bg-yellow-400">
+                Réserver une table
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-6 text-center">
+        <p>&copy; 2025 Le Gourmet. Tous droits réservés.</p>
+    </footer>
+</div>
 {% endblock %}
