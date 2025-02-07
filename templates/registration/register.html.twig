@@ -1,19 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+        <div class="max-w-md w-full bg-white shadow-md rounded-lg p-6">
+            <h1 class="text-2xl font-semibold text-center text-gray-700">Inscription</h1>
 
-    {{ form_errors(registrationForm) }}
+            {% if error is defined and error %}
+                <div class="text-red-500 text-sm mt-2">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+            <form method="post" class="mt-6">
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700">Email :</label>
+                    <input type="email" id="username" name="_username" required
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700">Mot de passe :</label>
+                    <input type="password" id="password" name="_password" required
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <button type="submit"
+                        class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200">
+                    S'incrire
+                </button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
