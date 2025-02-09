@@ -10,7 +10,7 @@
                 <nav>
                     <ul class="flex space-x-6">
                         <li><a href="" class="text-gray-700 hover:text-gray-900">Accueil</a></li>
-                        <li><a href="liste_courses" class="text-gray-700 hover:text-gray-900">Liste de courses</a></li>
+                        <li><a href="{{ path('shopping_list') }}" class="text-gray-700 hover:text-gray-900">Liste de courses</a></li>
                         <form action="{{ path('app_logout') }}" method="post" class="text-gray-700 hover:text-gray-900">
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
                             <button type="submit">Déconnexion</button>
@@ -43,89 +43,12 @@
             </div>
         </section>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const menuGrid = document.getElementById('menu-grid');
-                const refreshButton = document.getElementById('refresh-menu');
-                const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
-
-                function chargerMenu() {
-                    fetch('/api/recipe')
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Erreur lors de la récupération des recettes.');
-                            }
-                            return response.json();
-                        })
-                        .then(recipes => {
-                            console.log("Plats disponibles :", recipes);
-
-                            if (recipes.length < 7) {
-                                console.error("Pas assez de plats disponibles !");
-                                menuGrid.innerHTML = `<p class="text-red-500">Pas assez de plats pour générer un menu complet.</p>`;
-                                return;
-                            }
-
-                            // Mélanger et prendre 7 plats aléatoires
-                            const shuffledRecipes = recipes.sort(() => 0.5 - Math.random()).slice(0, 7);
-
-                            // Effacer le menu actuel
-                            menuGrid.innerHTML = '';
-
-                            // Conteneur de la première ligne (4 plats)
-                            const row1 = document.createElement('div');
-                            row1.className = 'grid grid-cols-1 md:grid-cols-4 gap-8 justify-center ';
-
-                            // Conteneur de la deuxième ligne (3 plats, centrés)
-                            const row2 = document.createElement('div');
-                            row2.className = 'grid grid-cols-1 md:grid-cols-3 gap-8 justify-center mt-8';
-
-                            shuffledRecipes.forEach((recipe, index) => {
-                                const imageName = recipe.title.toLowerCase().replace(/ /g, '_') + '.webp';
-                                const imagePath = `/images/${imageName}`;
-                                const day = jours[index]; // Associer chaque plat à un jour de la semaine
-
-                                // Création de la carte pour chaque plat
-                                const card = document.createElement('div');
-                                card.className = 'bg-white shadow-md rounded-lg p-6';
-
-                                card.innerHTML = `
-                                    <h3 class="text-2xl font-semibold text-center text-gray-800 mb-2">${day}</h3>
-                                    <img src="${imagePath}" alt="${recipe.title}" class="w-full h-48 object-cover rounded">
-                                    <h3 class="text-xl font-semibold mt-4">${recipe.title}</h3>
-                                    <p class="text-gray-600">${recipe.ingredients}</p>
-                                `;
-
-                                // Ajouter les 4 premiers plats à la première ligne, les 3 derniers à la deuxième
-                                if (index < 4) {
-                                    row1.appendChild(card);
-                                } else {
-                                    row2.appendChild(card);
-                                }
-                            });
-
-                            // Ajouter les lignes au menuGrid
-                            menuGrid.appendChild(row1);
-                            menuGrid.appendChild(row2);
-                        })
-                        .catch(error => {
-                            console.error('Erreur :', error);
-                            menuGrid.innerHTML = `<p class="text-red-500">Impossible de charger le menu pour le moment.</p>`;
-                        });
-                }
-
-                // Charger le menu au chargement de la page
-                chargerMenu();
-
-                // Rafraîchir le menu au clic sur le bouton
-                refreshButton.addEventListener('click', chargerMenu);
-            });
-        </script>
-
         {% block footer %}
             <footer class="bg-gray-900 text-white py-6 text-center">
                 <p>&copy; 2025 Le Gourmet. Tous droits réservés.</p>
             </footer>
         {% endblock %}
     </div>
+
+    <script src="{{ asset('build/menu.js') }}"></script>
 {% endblock %}

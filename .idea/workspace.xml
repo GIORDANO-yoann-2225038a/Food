@@ -4,27 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91a7e219-ffcb-4e60-b6fe-33a721ee48b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/gnocchi_de_butternut.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/gnocchi_sauce_tomate.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/gratin_dauphinois.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/poke_Bowl.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/poulet_curry.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/poulet_pâtes.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/quiche_lorraine.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/riz_poulet.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/salade.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/spaghettis_bolognaise.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/spaghettis_carbonara.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/steak_patate.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/tarte_légumes.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/tarte_à_la_tomate.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home/liste_courses.html.twig" afterDir="false" />
+    <list default="true" id="91a7e219-ffcb-4e60-b6fe-33a721ee48b1" name="Changes" comment="add appelle API pour récup plats et ajout d'image du styles du bouton reload">
+      <change afterPath="$PROJECT_DIR$/assets/js/menu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/build/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/RecipeFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/RecipeFixtures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
     </list>
@@ -160,19 +145,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;security-bundle&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "security-bundle",
+    "last_opened_file_path": "C:/Users/yg190/Documents/GitHub/Food/public/build",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yg190\Documents\GitHub\Food\public\build" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\yg190\Documents\GitHub\Food\public\images" />
     </key>
@@ -196,12 +185,22 @@
       <workItem from="1738826355175" duration="195000" />
       <workItem from="1738965181658" duration="1184000" />
     </task>
+    <task id="LOCAL-00001" summary="add appelle API pour récup plats et ajout d'image du styles du bouton reload">
+      <option name="closed" value="true" />
+      <created>1739116700072</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739116700072</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="add appelle API pour récup plats et ajout d'image du styles du bouton reload" />
+    <option name="LAST_COMMIT_MESSAGE" value="add appelle API pour récup plats et ajout d'image du styles du bouton reload" />
   </component>
 </project>
