@@ -2,72 +2,130 @@
 {% block title %}Notre Restaurant{% endblock %}
 
 {% block body %}
-<div class="bg-gray-100 min-h-screen">
-    <!-- Header -->
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-gray-800">Food</h1>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#" class="text-gray-700 hover:text-gray-900">Accueil</a></li>
-                    <li><a href="#" class="text-gray-700 hover:text-gray-900">Menu</a></li>
-                    <li><a href="#" class="text-gray-700 hover:text-gray-900">Réservations</a></li>
-                    <!-- Bouton de déconnexion (protection CSRF activée) -->
-                    <form action="{{ path('app_logout') }}" method="post" class="text-gray-700 hover:text-gray-900">
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
-                        <button type="submit">Déconnexion</button>
-                    </form>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative bg-cover bg-center h-96" style="background-image: url('{{ asset('images/restaurant.jpg') }}');">
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <h2 class="text-white text-5xl font-bold">Découvrez une expérience culinaire unique</h2>
-        </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="container mx-auto px-6 py-12">
-        <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Notre Menu</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <img src="{{ asset('images/plat1.jpg') }}" alt="Plat 1" class="w-full h-48 object-cover rounded">
-                <h3 class="text-xl font-semibold mt-4">Filet de saumon grillé</h3>
-                <p class="text-gray-600">Accompagné de légumes frais.</p>
-                <span class="block mt-2 text-gray-900 font-bold">15€</span>
+    <div class="bg-gray-100 min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-md">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <h1 class="text-3xl font-bold text-gray-800">Food</h1>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="" class="text-gray-700 hover:text-gray-900">Accueil</a></li>
+                        <li><a href="liste_courses" class="text-gray-700 hover:text-gray-900">Liste de courses</a></li>
+                        <form action="{{ path('app_logout') }}" method="post" class="text-gray-700 hover:text-gray-900">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+                            <button type="submit">Déconnexion</button>
+                        </form>
+                    </ul>
+                </nav>
             </div>
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <img src="{{ asset('images/plat2.jpg') }}" alt="Plat 2" class="w-full h-48 object-cover rounded">
-                <h3 class="text-xl font-semibold mt-4">Bœuf bourguignon</h3>
-                <p class="text-gray-600">Recette traditionnelle française.</p>
-                <span class="block mt-2 text-gray-900 font-bold">18€</span>
-            </div>
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <img src="{{ asset('images/plat3.jpg') }}" alt="Plat 3" class="w-full h-48 object-cover rounded">
-                <h3 class="text-xl font-semibold mt-4">Tarte aux fraises</h3>
-                <p class="text-gray-600">Un dessert frais et léger.</p>
-                <span class="block mt-2 text-gray-900 font-bold">7€</span>
-            </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- Réservation -->
-    <section class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold">Réservez votre table dès maintenant</h2>
-            <p class="mt-4 text-lg">Appelez-nous au <strong>+33 1 23 45 67 89</strong> ou réservez en ligne.</p>
-            <a href="#" class="mt-6 inline-block bg-yellow-500 text-gray-900 font-semibold py-3 px-6 rounded-lg hover:bg-yellow-400">
-                Réserver une table
-            </a>
-        </div>
-    </section>
+        <!-- Hero Section -->
+        <section class="relative bg-cover bg-center h-96" style="background-image: url('{{ asset('images/restaurant.jpg') }}');">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <h2 class="text-white text-5xl font-bold">Découvrez une expérience culinaire unique</h2>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-6 text-center">
-        <p>&copy; 2025 Le Gourmet. Tous droits réservés.</p>
-    </footer>
-</div>
+        <!-- Menu Section -->
+        <section class="container mx-auto px-6 py-12">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Menu de la semaine</h2>
+
+            <!-- Bouton pour rafraîchir -->
+            <div class="text-center mb-6">
+                <button id="refresh-menu" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition">
+                    Changer la sélection
+                </button>
+            </div>
+
+            <div id="menu-grid" class="grid gap-8">
+                <!-- Les plats seront ajoutés dynamiquement ici -->
+            </div>
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuGrid = document.getElementById('menu-grid');
+                const refreshButton = document.getElementById('refresh-menu');
+                const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+
+                function chargerMenu() {
+                    fetch('/api/recipe')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Erreur lors de la récupération des recettes.');
+                            }
+                            return response.json();
+                        })
+                        .then(recipes => {
+                            console.log("Plats disponibles :", recipes);
+
+                            if (recipes.length < 7) {
+                                console.error("Pas assez de plats disponibles !");
+                                menuGrid.innerHTML = `<p class="text-red-500">Pas assez de plats pour générer un menu complet.</p>`;
+                                return;
+                            }
+
+                            // Mélanger et prendre 7 plats aléatoires
+                            const shuffledRecipes = recipes.sort(() => 0.5 - Math.random()).slice(0, 7);
+
+                            // Effacer le menu actuel
+                            menuGrid.innerHTML = '';
+
+                            // Conteneur de la première ligne (4 plats)
+                            const row1 = document.createElement('div');
+                            row1.className = 'grid grid-cols-1 md:grid-cols-4 gap-8 justify-center ';
+
+                            // Conteneur de la deuxième ligne (3 plats, centrés)
+                            const row2 = document.createElement('div');
+                            row2.className = 'grid grid-cols-1 md:grid-cols-3 gap-8 justify-center mt-8';
+
+                            shuffledRecipes.forEach((recipe, index) => {
+                                const imageName = recipe.title.toLowerCase().replace(/ /g, '_') + '.webp';
+                                const imagePath = `/images/${imageName}`;
+                                const day = jours[index]; // Associer chaque plat à un jour de la semaine
+
+                                // Création de la carte pour chaque plat
+                                const card = document.createElement('div');
+                                card.className = 'bg-white shadow-md rounded-lg p-6';
+
+                                card.innerHTML = `
+                                    <h3 class="text-2xl font-semibold text-center text-gray-800 mb-2">${day}</h3>
+                                    <img src="${imagePath}" alt="${recipe.title}" class="w-full h-48 object-cover rounded">
+                                    <h3 class="text-xl font-semibold mt-4">${recipe.title}</h3>
+                                    <p class="text-gray-600">${recipe.ingredients}</p>
+                                `;
+
+                                // Ajouter les 4 premiers plats à la première ligne, les 3 derniers à la deuxième
+                                if (index < 4) {
+                                    row1.appendChild(card);
+                                } else {
+                                    row2.appendChild(card);
+                                }
+                            });
+
+                            // Ajouter les lignes au menuGrid
+                            menuGrid.appendChild(row1);
+                            menuGrid.appendChild(row2);
+                        })
+                        .catch(error => {
+                            console.error('Erreur :', error);
+                            menuGrid.innerHTML = `<p class="text-red-500">Impossible de charger le menu pour le moment.</p>`;
+                        });
+                }
+
+                // Charger le menu au chargement de la page
+                chargerMenu();
+
+                // Rafraîchir le menu au clic sur le bouton
+                refreshButton.addEventListener('click', chargerMenu);
+            });
+        </script>
+
+        {% block footer %}
+            <footer class="bg-gray-900 text-white py-6 text-center">
+                <p>&copy; 2025 Le Gourmet. Tous droits réservés.</p>
+            </footer>
+        {% endblock %}
+    </div>
 {% endblock %}
