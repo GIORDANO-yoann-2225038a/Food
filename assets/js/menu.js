@@ -4,14 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
     function chargerMenu() {
-        fetch('/api/recipe')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erreur lors de la récupération des recettes.');
-                }
-                return response.json();
-            })
-            .then(recipes => {
+        fetch('/api/recipes')
+            .then(response => response.json())
+            .then(data => {
+                const recipes = data.member;  // Accéder à la liste des recettes sous "member"
+
                 console.log("Plats disponibles :", recipes);
 
                 if (recipes.length < 7) {

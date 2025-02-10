@@ -4,14 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
     function chargerMenu() {
-        fetch('/api/recipe')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erreur lors de la récupération des recettes.');
-                }
-                return response.json();
-            })
-            .then(recipes => {
+        fetch('/api/recipes')
+            .then(response => response.json())
+            .then(data => {
+                const recipes = data.member;  // Accéder à la liste des recettes sous "member"
+
                 console.log("Plats disponibles :", recipes);
 
                 if (recipes.length < 7) {
@@ -50,9 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const row2 = document.createElement('div');
                 row2.className = 'grid grid-cols-1 md:grid-cols-3 gap-8 justify-center mt-8';
 
-                const row3 = document.createElement('div');
-                row3.className = 'grid grid-cols-1 md:grid-cols-1 gap-8 justify-center mt-8';
-
                 shuffledRecipes.forEach((recipe, index) => {
                     const imageName = recipe.title.toLowerCase().replace(/ /g, '_') + '.webp';
                     const imagePath = `/images/${imageName}`;
@@ -80,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Ajouter les lignes au menuGrid
                 menuGrid.appendChild(row1);
                 menuGrid.appendChild(row2);
-                menuGrid.appendChild(row3);
             })
             .catch(error => {
                 console.error('Erreur :', error);
