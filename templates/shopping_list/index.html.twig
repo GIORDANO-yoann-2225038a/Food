@@ -19,20 +19,28 @@
             </nav>
         </div>
     </header>
+
+    <!-- Contenu principal -->
     <div class="container mx-auto px-6 py-12">
-        <h1 class="text-4xl font-bold text-center mb-8">Liste de Courses</h1>
+        <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">🛒 Liste de Courses</h1>
 
         {% if shoppingList is not empty %}
-            <ul class="list-disc list-inside bg-white p-6 rounded shadow-md">
-                {% for ingredient, quantity in shoppingList %}
-                    <li>{{ ingredient }} x{{ quantity }}</li>
-                {% endfor %}
-            </ul>
+            <div class="bg-white p-6 rounded-xl shadow-xl max-w-3xl mx-auto">
+                <ul class="space-y-4">
+                    {% for ingredient, quantity in shoppingList %}
+                        <li class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
+                            <span class="text-lg font-semibold text-gray-800">{{ ingredient }}</span>
+                            <span class="bg-green-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-md">x{{ quantity }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         {% else %}
-            <p class="text-gray-600 text-center">Aucun ingrédient à afficher.</p>
+            <p class="text-gray-600 text-center text-lg">Aucun ingrédient à afficher.</p>
         {% endif %}
-
     </div>
+
+    <!-- Footer -->
     <footer class="bg-gray-900 text-white py-6 text-center">
         <p>&copy; 2025 Le Gourmet. Tous droits réservés.</p>
     </footer>
