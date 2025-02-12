@@ -9,7 +9,7 @@
                 <h1 class="text-3xl font-bold text-gray-800">Food</h1>
                 <nav>
                     <ul class="flex space-x-6">
-                        <li><a href="" class="text-gray-700 hover:text-gray-900">Accueil</a></li>
+                        <li><a href="{{ path('app_home') }}" class="text-gray-700 hover:text-gray-900">Accueil</a></li>
                         <li><a href="{{ path('shopping_list') }}" class="text-gray-700 hover:text-gray-900">Liste de courses</a></li>
                         <form action="{{ path('app_logout') }}" method="post" class="text-gray-700 hover:text-gray-900">
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">

@@ -3,6 +3,22 @@
 {% block title %}Liste de Courses{% endblock %}
 
 {% block body %}
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-gray-800">Food</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="{{ path('app_home') }}" class="text-gray-700 hover:text-gray-900">Accueil</a></li>
+                    <li><a href="{{ path('shopping_list') }}" class="text-gray-700 hover:text-gray-900">Liste de courses</a></li>
+                    <form action="{{ path('app_logout') }}" method="post" class="text-gray-700 hover:text-gray-900">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+                        <button type="submit">Déconnexion</button>
+                    </form>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <div class="container mx-auto px-6 py-12">
         <h1 class="text-4xl font-bold text-center mb-8">Liste de Courses</h1>
 
@@ -15,5 +31,9 @@
         {% else %}
             <p class="text-gray-600 text-center">Aucun ingrédient à afficher.</p>
         {% endif %}
+
     </div>
+    <footer class="bg-gray-900 text-white py-6 text-center">
+        <p>&copy; 2025 Le Gourmet. Tous droits réservés.</p>
+    </footer>
 {% endblock %}
