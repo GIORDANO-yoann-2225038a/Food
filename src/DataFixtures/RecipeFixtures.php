@@ -10,7 +10,7 @@ class RecipeFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $recipes = [
+        $recipe = [
             'Quiche lorraine' => 'crème fraiche, lardons, oeufs, gruyère, pâte feuilletée',
             'Tarte légumes' => 'moutarde, pâte brisée, aubergines, poivrons, fromage',
             'Tarte à la tomate' => 'moutarde, tomates',
@@ -28,7 +28,7 @@ class RecipeFixtures extends Fixture
 
         ];
 
-        foreach ($recipes as $title => $ingredients) {
+        foreach ($recipe as $title => $ingredients) {
             $recipe = new Recipe();
             $recipe->setTitle($title);
             $recipe->setIngredients($ingredients);
