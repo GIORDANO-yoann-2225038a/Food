@@ -63,7 +63,7 @@ php bin/console doctrine:migrations:migrate
  ```
 ⚠️ Attention : Cette commande réinitialisera les données existantes en base !
 
-### 10.  Démarrez le serveur 🚀
+### 🚀 10.  Démarrez le serveur 
 ```bash
 symfony serve
 ```
