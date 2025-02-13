@@ -6,7 +6,7 @@
     <!-- Header -->
     <header class="bg-white shadow-md">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-gray-800">Food</h1>
+            <h1 class="text-3xl font-bold text-gray-800">Le Gourmet</h1>
             <nav>
                 <ul class="flex space-x-6">
                     <li><a href="{{ path('app_home') }}" class="text-gray-700 hover:text-gray-900">Accueil</a></li>
@@ -29,7 +29,15 @@
                 <ul class="space-y-4">
                     {% for ingredient, quantity in shoppingList %}
                         <li class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-md transition transform hover:scale-105 hover:shadow-lg">
-                            <span class="text-lg font-semibold text-gray-800">{{ ingredient }}</span>
+                            <label class="flex items-center space-x-4 cursor-pointer w-full">
+                                <input type="checkbox" class="ingredient-checkbox hidden" data-ingredient="{{ ingredient }}">
+                                <span class="w-5 h-5 border-2 border-gray-400 rounded-md flex items-center justify-center check-icon transition">
+                                    <svg class="hidden w-4 h-4 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                </span>
+                                <span class="text-lg font-semibold text-gray-800 ingredient-name transition">{{ ingredient }}</span>
+                            </label>
                             <span class="bg-green-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-md">x{{ quantity }}</span>
                         </li>
                     {% endfor %}
@@ -44,4 +52,37 @@
     <footer class="bg-gray-900 text-white py-6 text-center">
         <p>&copy; 2025 Le Gourmet. Tous droits réservés.</p>
     </footer>
+
+    <!-- Script pour gérer les cases cochées -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.ingredient-checkbox');
+            checkboxes.forEach(checkbox => {
+                const ingredient = checkbox.dataset.ingredient;
+                const label = checkbox.closest('label');
+                const ingredientName = label.querySelector('.ingredient-name');
+                const checkIcon = label.querySelector('.check-icon svg');
+
+                // Vérifier si l'ingrédient est déjà coché dans localStorage
+                if (localStorage.getItem(ingredient) === 'checked') {
+                    checkbox.checked = true;
+                    ingredientName.classList.add('line-through', 'text-gray-400');
+                    checkIcon.classList.remove('hidden');
+                }
+
+                // Ajouter un événement de changement
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        ingredientName.classList.add('line-through', 'text-gray-400');
+                        checkIcon.classList.remove('hidden');
+                        localStorage.setItem(ingredient, 'checked'); // Stocker l'état
+                    } else {
+                        ingredientName.classList.remove('line-through', 'text-gray-400');
+                        checkIcon.classList.add('hidden');
+                        localStorage.removeItem(ingredient); // Supprimer du stockage
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}

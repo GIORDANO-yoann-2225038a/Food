@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Création de la carte du plat
             const card = document.createElement('div');
-            card.className = 'bg-gray-100 shadow-2xl rounded-2xl p-4 flex flex-col items-center w-32 h-32 md:h-80 lg:h-96 transition-transform transform hover:scale-105'
+            card.className = 'bg-gray-100 shadow-2xl rounded-2xl p-4 flex flex-col items-center w-48 h-48 md:h-80 lg:h-96 transition-transform transform hover:scale-105'
 
             card.innerHTML = `
                         <h3 class="text-lg font-semibold text-gray-700 mb-2">${day}</h3>
